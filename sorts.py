@@ -14,7 +14,7 @@ def bubble_sort(lst, comparison_function):
     print("Bubble Sort: there were {} swaps".format(swaps))
     return lst
 
-def quicksort(lst, start, end):
+def quicksort(lst, start, end, comparison_function):
     if start >= end:
         return lst
     
@@ -26,10 +26,10 @@ def quicksort(lst, start, end):
     less_than_pointer = start
 
     for i in range(start, end):
-        if pivot_element > lst[i]:
+        if comparison_function(pivot_element, lst[i]):
             lst[i], lst[less_than_pointer] = lst[less_than_pointer], lst[i]
             less_than_pointer += 1
     lst[end], lst[less_than_pointer] = lst[less_than_pointer], lst[end]
 
-    quicksort(lst, start, less_than_pointer - 1)
-    quicksort(lst, less_than_pointer + 1, end)
+    quicksort(lst, start, less_than_pointer - 1, comparison_function)
+    quicksort(lst, less_than_pointer + 1, end, comparison_function)
