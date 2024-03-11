@@ -1,13 +1,13 @@
 from random import randrange
 
-def bubble_sort(lst):
+def bubble_sort(lst, comparison_function):
     swaps = 0
     sorted = False
 
     while not sorted:
         sorted = True
         for idx in range(len(lst) - 1):
-            if lst[idx] > lst[idx + 1]:
+            if comparison_function(lst[idx], lst[idx + 1]):
                 sorted = False
                 lst[idx], lst[idx + 1] = lst[idx + 1], lst[idx]
                 swaps += 1
